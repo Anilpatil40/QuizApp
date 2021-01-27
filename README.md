@@ -12,4 +12,4 @@ It is true/false Quiz App
 * Animation for next question
 
 ## USED THIRD PARTY LIBRARY
-- No Third party library used
+- No third party library used
