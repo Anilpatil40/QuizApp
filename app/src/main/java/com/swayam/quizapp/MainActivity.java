@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity{
 
         progress.setProgress(queNumber*10);
         getSupportFragmentManager().beginTransaction()
-                .replace(frameLayout.getId(), new MFragment(queNumber,questions[queNumber-1].getQuestion()))
                 .setCustomAnimations(R.anim.start_from_left,R.anim.exit_to_right)
+                .replace(frameLayout.getId(), new MFragment(queNumber,questions[queNumber-1].getQuestion()))
                 .commit();
     }
 
