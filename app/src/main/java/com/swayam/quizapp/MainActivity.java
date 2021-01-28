@@ -13,6 +13,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.random.successunsuccess.SuccessUnSuccess;
+
 public class MainActivity extends AppCompatActivity{
     public final String INDEX = "INDEX";
     public final String CORRECT = "CORRECT";
@@ -57,24 +59,34 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-    public void truePessed(View view){
+    public void truePressed(View view){
         checkAnswer(true);
-        moveToNextQuetion();
+
     }
 
     public void falsePressed(View view){
         checkAnswer(false);
-        moveToNextQuetion();
     }
 
     public void checkAnswer(boolean value){
         if(questions[queNumber-1].getAnswer() == value){
             correctAnss++;
-            ((TextView)findViewById(R.id.correctAns)).setText("Correct ANswers : "+correctAnss);
-            Toast.makeText(this, "Right Answer", Toast.LENGTH_SHORT).show();
+            ((TextView)findViewById(R.id.correctAns)).setText("Correct Answers : "+correctAnss);
+            SuccessUnSuccess.showSuccessDialog(this, new SuccessUnSuccess.Listener() {
+                @Override
+                public void onDismiss() {
+                    moveToNextQuetion();
+                }
+            });
         }else {
-            Toast.makeText(this, "Wrong Answer", Toast.LENGTH_SHORT).show();
+            SuccessUnSuccess.showErrorDialog(this, new SuccessUnSuccess.Listener() {
+                @Override
+                public void onDismiss() {
+                    moveToNextQuetion();
+                }
+            });
         }
+
     }
 
     public void moveToNextQuetion(){
